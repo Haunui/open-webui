@@ -338,7 +338,7 @@ async def pull_model(
             return StreamingResponse(
                 stream_content(),
                 status_code=r.status_code,
-                headers=dict(r.headers),
+                headers={k: v for k, v in dict(r.headers).items() if k in ['Content-Type', 'Date', 'Transfer-Encoding']},
             )
         except Exception as e:
             raise e
@@ -411,7 +411,7 @@ async def push_model(
             return StreamingResponse(
                 stream_content(),
                 status_code=r.status_code,
-                headers=dict(r.headers),
+                headers={k: v for k, v in dict(r.headers).items() if k in ['Content-Type', 'Date', 'Transfer-Encoding']},
             )
         except Exception as e:
             raise e
@@ -477,7 +477,7 @@ async def create_model(
             return StreamingResponse(
                 stream_content(),
                 status_code=r.status_code,
-                headers=dict(r.headers),
+                headers={k: v for k, v in dict(r.headers).items() if k in ['Content-Type', 'Date', 'Transfer-Encoding']},
             )
         except Exception as e:
             raise e
@@ -833,7 +833,7 @@ async def generate_completion(
             return StreamingResponse(
                 stream_content(),
                 status_code=r.status_code,
-                headers=dict(r.headers),
+                headers={k: v for k, v in dict(r.headers).items() if k in ['Content-Type', 'Date', 'Transfer-Encoding']},
             )
         except Exception as e:
             raise e
@@ -943,7 +943,7 @@ async def generate_chat_completion(
             return StreamingResponse(
                 stream_content(),
                 status_code=r.status_code,
-                headers=dict(r.headers),
+                headers={k: v for k, v in dict(r.headers).items() if k in ['Content-Type', 'Date', 'Transfer-Encoding']},
             )
         except Exception as e:
             log.exception(e)
@@ -1049,7 +1049,7 @@ async def generate_openai_chat_completion(
             return StreamingResponse(
                 stream_content(),
                 status_code=r.status_code,
-                headers=dict(r.headers),
+                headers={k: v for k, v in dict(r.headers).items() if k in ['Content-Type', 'Date', 'Transfer-Encoding']},
             )
         except Exception as e:
             raise e
